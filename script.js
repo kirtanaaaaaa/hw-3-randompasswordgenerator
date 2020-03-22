@@ -13,18 +13,15 @@ function writePassword() {
 // Add event listener to generate button
  generateBtn.addEventListener("click", writePassword);
  
-var passwordLength = prompt("Password length?");
+ alert("Password must be in between 8 and 128 characters");
 
- if (passwordLength < 8 || passwordLength > 128){
-  alert("must be in between 8 and 128");
- }
+   var passwordLength = prompt("Password length?");
 
- else {
    var uppercase = confirm ("Do you want uppercase letters?");
    var lowercase = confirm ("Do you want lowercase letters?");
    var number = confirm ("Do you want numbers?");
    var special = confirm ("Do you want special characters?");
- }
+
 
  if (uppercase === false && lowercase === false && numbers === false && special === false) {
   alert ("at least one must be chosen!");
