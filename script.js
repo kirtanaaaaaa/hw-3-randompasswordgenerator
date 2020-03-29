@@ -13,59 +13,51 @@ function writePassword() {
 // Add event listener to generate button
  generateBtn.addEventListener("click", writePassword);
  
- var passwordLength = prompt("Password length?");
+function generatePassword(){
+
+  var passwordLength = prompt("Password length?");
 
   if (passwordLength <8 || passwordLength >128){
     alert ("must be in between 8 and 128 characters");
   }
   else {
-    var uppercase = confirm ("Do you want uppercase letters?");
-    var lowercase = confirm ("Do you want lowercase letters?");
-    var number = confirm ("Do you want numbers?");
-    var special = confirm ("Do you want special characters?");
+    var includeUppercase = confirm ("Do you want uppercase letters?");
+    var includeLowercase = confirm ("Do you want lowercase letters?");
+    var includeNumbers = confirm ("Do you want numbers?");
+    var includeSpecial = confirm ("Do you want special characters?");
   }
   
- if (uppercase === false && lowercase === false && numbers === false && special === false) {
+ if (includeUppercase === false && includeLowercase === false && includeNumbers === false && includeSpecial === false) {
   alert ("at least one must be chosen!");
 }
+   var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   var lowercase = "abcdefghijklmnopqrstuvwxyz";
+   var numbers= "0123456789";
+   var special= "!@#$%^&*()-+=~?<>,.\/";
 
-function generatedPassword(){
+  var passwordArray = [];
 
-  var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var lowercase = "abcdefghijklmnopqrstuvwxyz";
-  var numbers = "0123456789";
-  var specialchar = "!@#$%^&*()-+=~?<>,.\/";
-  var pass = "";
-
-  function randomUpper(){
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-  }
-  function randomLower(){
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-  }
-  function randomNumber(){
-    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-  }
-  function randomSpecialChar(){
-    return symbols [Math.floor(Math.random() * specialChar.length)];
-  }
-
-  for (var i = 0; i <= passwordLength ; i++) {
-    if (uppercase === true){
-      return pass + randomUpper;
+  for (var i = 1; i <= passwordLength; i++) {
+    if (includeUppercase === true){
+    var a = uppercase[Math.floor(Math.random() * uppercase.length)];
+    passwordArray.push(a);
     }
-    if (lowercase === true){
-      return pass + randomLower;
+    if (includeLowercase === true){
+    var b = lowercase[Math.floor(Math.random() * lowercase.length)];
+    passwordArray.push(b);
     }
-    if (numbers === true){
-      return pass + randomNumber;
+    if (includeNumbers === true){
+    var c = numbers[Math.floor(Math.random() * numbers.length)];
+    passwordArray.push(c);
     }
-    if (special === true){
-      return pass + randomSpecialChar;
+    if (includeSpecial === true){
+    var d = special[Math.floor(Math.random() * special.length)];
+    passwordArray.push(d);
     }
   } 
   
-  alert ("your password is " + pass );
+  
+  alert ("your password is " + passwordArray);
 }
 
 
