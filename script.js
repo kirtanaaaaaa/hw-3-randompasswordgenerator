@@ -7,11 +7,10 @@ function writePassword() {
    var passwordText = document.querySelector("#password");
 
    passwordText.value = password;
-
  }
 
 // Add event listener to generate button
- generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword);
  
 function generatePassword(){
 
@@ -26,40 +25,42 @@ function generatePassword(){
     var includeNumbers = confirm ("Do you want numbers?");
     var includeSpecial = confirm ("Do you want special characters?");
   }
-  
+
  if (includeUppercase === false && includeLowercase === false && includeNumbers === false && includeSpecial === false) {
   alert ("at least one must be chosen!");
-}
-   var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-   var lowercase = "abcdefghijklmnopqrstuvwxyz";
-   var numbers= "0123456789";
-   var special= "!@#$%^&*()-+=~?<>,.\/";
+ }
+   var uppercase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+   var lowercase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+   var numbers= ["0","1","2","3","4","5","6","7","8","9"];
+   var special= ["!","@","#","$","%","^","&","*","(",")","-","+","=","?","/",".","<",">","|"];
 
-  var passwordArray = [];
+   var eligibleCharacters = []
 
-  for (var i = 1; i <= passwordLength; i++) {
-    if (includeUppercase === true){
-    var a = uppercase[Math.floor(Math.random() * uppercase.length)];
-    passwordArray.push(a);
-    }
-    if (includeLowercase === true){
-    var b = lowercase[Math.floor(Math.random() * lowercase.length)];
-    passwordArray.push(b);
-    }
-    if (includeNumbers === true){
-    var c = numbers[Math.floor(Math.random() * numbers.length)];
-    passwordArray.push(c);
-    }
-    if (includeSpecial === true){
-    var d = special[Math.floor(Math.random() * special.length)];
-    passwordArray.push(d);
-    }
-  } 
+   if (includeUppercase){
+    eligibleCharacters = eligibleCharacters.concat(uppercase)
+   }
+
+   if (includeLowercase){
+     eligibleCharacters = eligibleCharacters.concat(lowercase)
+   }
+
+   if (includeNumbers){
+     eligibleCharacters = eligibleCharacters.concat(numbers)
+   }
+
+   if (includeSpecial){
+     eligibleCharacters = eligibleCharacters.concat(special)
+   }
   
-  
-  alert ("your password is " + passwordArray);
+
+   var passwordArray = ""
+
+   for (var i = 0; i < passwordLength; i++){
+     passwordArray = passwordArray + eligibleCharacters[Math.floor(Math.random()* eligibleCharacters.length)];
+   }
+
+   return passwordArray;
+
 }
-
-
 
 
